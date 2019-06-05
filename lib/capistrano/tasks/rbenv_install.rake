@@ -32,7 +32,11 @@ namespace :rbenv do
     on roles fetch(:rbenv_roles) do
       next unless test "[ -d #{rbenv_ruby_build_path} ]"
       within rbenv_ruby_build_path do
-        unless test "[ $(git rev-parse --abbrev-ref HEAD) = \"deploy\" ]"
+        if fetch(:cope_with_itamae_rbenv_install)
+          unless test "[ $(git rev-parse --abbrev-ref HEAD) = \"deploy\" ]"
+            execute :git, :pull
+          end
+        else
           execute :git, :pull
         end
       end
