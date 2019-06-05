@@ -32,7 +32,11 @@ namespace :rbenv do
     on roles fetch(:rbenv_roles) do
       next unless test "[ -d #{rbenv_ruby_build_path} ]"
       within rbenv_ruby_build_path do
-        execute :git, :pull
+        if fetch(:rbenv_ruby_build_revision)
+          execute :git, :checkout, fetch(:rbenv_ruby_build_revision)
+        else
+          execute :git, :pull
+        end
       end
     end
   end
