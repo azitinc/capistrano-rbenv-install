@@ -40,6 +40,14 @@ Run:
 
 And watch ruby being installed.
 
+### CUSTOMIZED FLAG
+
+#### check_itamae_rbenv_install
+
+    set :check_itamae_rbenv_install, true
+
+to check rbenv plugin ruby-build already installed via [k0kubun/itamae-plugin-recipe-rbenv](https://github.com/k0kubun/itamae-plugin-recipe-rbenv).
+
 ### Purpose
 
 Installing software packages on servers is called
